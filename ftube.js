@@ -7,7 +7,7 @@
   system = require('system');
 
   rand = function() {
-    return Math.floor(Math.random() * 10000);
+    return Math.floor(Math.random() * 60000);
   };
 
   mmove = function() {
@@ -18,7 +18,7 @@
   setTimeout((function() {
     console.log("UNEXPECTED ERROR, TIMEOUT, HALT!");
     return slimer.exit();
-  }), 300000 + rand());
+  }), 600000 + rand());
 
   page.open(system.args[1], function(status) {
     if (status === "success") {
@@ -27,7 +27,7 @@
       return setTimeout((function() {
         console.log(Date() + " end video");
         return slimer.exit();
-      }), 150000 + rand());
+      }), 600000 + rand());
     } else {
       console.log("error on connection " + status + " HALT");
       return slimer.exit();
