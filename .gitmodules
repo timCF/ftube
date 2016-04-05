@@ -1,0 +1,3 @@
+[submodule "fproxy"]
+	path = fproxy
+	url = https://github.com/timCF/fproxy.git
