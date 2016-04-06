@@ -5,14 +5,19 @@ while true; do
 	pushd ./fproxy > /dev/null
 	PROXYLIST=($( ./run.sh | sed "s/\[/ /g" | sed "s/\]/ /g" | sed "s/,/ /g" | sed "s/\"/'/g" ))
 	popd > /dev/null
-	for N in $(seq 1 $2)
-	do
-		THISPROXY=${PROXYLIST[$RANDOM % ${#PROXYLIST[@]}]}
-		echo "$N THREAD GOT PROXY $THISPROXY"
-		phantomjs --proxy=$THISPROXY ./ftube.js $1 &
-	done
-	echo "wait ..."
-	wait
-	echo "done ..."
+	if [ "${#PROXYLIST[@]}" -ne "0" ]
+	then
+		for N in $(seq 1 $2)
+		do
+			THISPROXY=${PROXYLIST[$RANDOM % ${#PROXYLIST[@]}]}
+			echo "$N THREAD GOT PROXY $THISPROXY"
+			phantomjs --proxy=$THISPROXY ./ftube.js $1 &
+		done
+		echo "wait ..."
+		wait
+		echo "done ..."
+	else
+		echo "prevent division by zero ..."
+	fi
 	sleep 5
 done
