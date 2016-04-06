@@ -8,9 +8,11 @@ while true; do
 	for N in $(seq 1 $2)
 	do
 		THISPROXY=${PROXYLIST[$RANDOM % ${#PROXYLIST[@]}]}
-		echo "GOT PROXY $THISPROXY"
-		slimerjs --proxy=$THISPROXY ./ftube.js $1 &
+		echo "$N THREAD GOT PROXY $THISPROXY"
+		phantomjs --proxy=$THISPROXY ./ftube.js $1 &
 	done
+	echo "wait ..."
 	wait
+	echo "done ..."
 	sleep 5
 done

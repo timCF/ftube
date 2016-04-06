@@ -1,15 +1,11 @@
 page = require('webpage').create()
 system = require('system')
 rand = () -> Math.floor(Math.random() * 60000)
-mmove = () ->
-	page.sendEvent('mousemove', rand(), rand())
-	setTimeout(mmove, Math.floor(rand()/100))
-setTimeout((() -> console.log("UNEXPECTED ERROR, TIMEOUT, HALT!") ; slimer.exit()), 600000 + rand())
+setTimeout((() -> console.log("UNEXPECTED ERROR, TIMEOUT, HALT!") ; phantom.exit()), 600000 + rand())
 page.open(system.args[1], (status) ->
 	if (status == "success")
 		console.log(Date()+" start video")
-		mmove()
-		setTimeout((() -> console.log(Date()+" end video") ; slimer.exit()), 600000 + rand())
+		setTimeout((() -> console.log(Date()+" end video") ; phantom.exit()), 600000 + rand())
 	else
 		console.log("error on connection "+status+" HALT")
-		slimer.exit())
+		phantom.exit())
