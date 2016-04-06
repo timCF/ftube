@@ -2,8 +2,16 @@
 while true; do
 	echo "HOST $1"
 	echo "THREADS $2"
+	if [ -z "$3" ]
+	then
+		echo "COUNTRY : ALL"
+		COUNTRY=""
+	else
+		echo "COUNTRY : $3"
+		COUNTRY="$3"
+	fi
 	pushd ./fproxy > /dev/null
-	PROXYLIST=($( ./run.sh | sed "s/\[/ /g" | sed "s/\]/ /g" | sed "s/,/ /g" | sed "s/\"/'/g" ))
+	PROXYLIST=($( ./run.sh $COUNTRY | sed "s/\[/ /g" | sed "s/\]/ /g" | sed "s/,/ /g" | sed "s/\"/'/g" ))
 	popd > /dev/null
 	if [ "${#PROXYLIST[@]}" -ne "0" ]
 	then

@@ -13,7 +13,7 @@
   setTimeout((function() {
     console.log("UNEXPECTED ERROR, TIMEOUT, HALT!");
     return phantom.exit();
-  }), 220000 + rand());
+  }), 300000);
 
   page.open(system.args[1], function(status) {
     if (status === "success") {
