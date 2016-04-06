@@ -13,7 +13,7 @@
   setTimeout((function() {
     console.log("UNEXPECTED ERROR, TIMEOUT, HALT!");
     return phantom.exit();
-  }), 600000 + rand());
+  }), 220000 + rand());
 
   page.open(system.args[1], function(status) {
     if (status === "success") {
@@ -21,7 +21,7 @@
       return setTimeout((function() {
         console.log(Date() + " end video");
         return phantom.exit();
-      }), 600000 + rand());
+      }), 220000 + rand());
     } else {
       console.log("error on connection " + status + " HALT");
       return phantom.exit();
