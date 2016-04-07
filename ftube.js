@@ -7,13 +7,13 @@
   system = require('system');
 
   rand = function() {
-    return Math.floor(Math.random() * 60000);
+    return Math.floor(Math.random() * 5000);
   };
 
   setTimeout((function() {
     console.log("UNEXPECTED ERROR, TIMEOUT, HALT!");
     return phantom.exit();
-  }), 300000);
+  }), 600000);
 
   page.open(system.args[1], function(status) {
     if (status === "success") {
@@ -21,7 +21,7 @@
       return setTimeout((function() {
         console.log(Date() + " end video");
         return phantom.exit();
-      }), 220000 + rand());
+      }), 540000 + rand());
     } else {
       console.log("error on connection " + status + " HALT");
       return phantom.exit();
